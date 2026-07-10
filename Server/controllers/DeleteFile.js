@@ -3,7 +3,7 @@ import fs from "fs";
 const DeleteFile = async (req, res) => {
     try {
         const { id } = req.params;
-        console.log(id)
+
         const findFile = await UploadFileModel.findById(id);
         if (!findFile) {
             return res

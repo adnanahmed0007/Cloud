@@ -7,7 +7,9 @@ import UploadFile from "../controllers/UploadFile.js";
 import GetAllfile from "../controllers/GetAllfiles.js";
 import DeleteFile from "../controllers/DeleteFile.js";
 import Downloadfile from "../controllers/Downloadfile.js";
-
+import RenameFile from "../controllers/RenamFile.js";
+import SearchFile from "../controllers/SearchFile.js";
+import Pagination from "../controllers/Pginationfile.js";
 const Route = express.Router();
 Route.post("/signup", SignupController);
 Route.post("/login", Login)
@@ -15,4 +17,7 @@ Route.post("/upload", verifyJwt, upload.single("file"), UploadFile);
 Route.get("/getall", verifyJwt, GetAllfile);
 Route.delete("/delete/:id", verifyJwt, DeleteFile);
 Route.get("/download/:id", verifyJwt, Downloadfile)
+Route.post("/rename/:id", verifyJwt, RenameFile)
+Route.get("/search", verifyJwt, SearchFile)
+Route.get("/files", verifyJwt, Pagination)
 export default Route;
