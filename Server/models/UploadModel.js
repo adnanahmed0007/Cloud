@@ -39,6 +39,10 @@ const uploadFileSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        isTrashed: {
+            type: Boolean,
+            default: false,
+        }
     },
     {
         timestamps: true,

@@ -1,6 +1,6 @@
 import UploadFileModel from "../models/UploadModel.js";
 
-const DeleteFile = async (req, res) => {
+const RestoreFile = async (req, res) => {
     try {
         const { id } = req.params;
 
@@ -16,25 +16,24 @@ const DeleteFile = async (req, res) => {
         if (findFile.owner.toString() !== req.user._id.toString()) {
             return res.status(403).json({
                 success: false,
-                message: "You are not allowed to delete this file."
+                message: "You are not allowed to restore this file."
             });
         }
 
-        if (findFile.isTrashed) {
+        if (!findFile.isTrashed) {
             return res.status(400).json({
                 success: false,
-                message: "File is already in trash."
+                message: "File is not in trash."
             });
         }
 
-
-        findFile.isTrashed = true;
+        findFile.isTrashed = false;
 
         await findFile.save();
 
         return res.status(200).json({
             success: true,
-            message: "File moved to trash successfully.",
+            message: "File restored successfully.",
             file: findFile
         });
 
@@ -48,4 +47,4 @@ const DeleteFile = async (req, res) => {
     }
 };
 
-export default DeleteFile;
+export default RestoreFile;
