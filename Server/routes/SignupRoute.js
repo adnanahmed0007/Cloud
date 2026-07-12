@@ -13,6 +13,7 @@ import Pagination from "../controllers/Pginationfile.js";
 import Trashed from "../controllers/GetTrashedfile.js";
 import RestoreFile from "../controllers/RestoreFile.js";
 import PermanentDelete from "../controllers/DeletePermanently.js";
+import ApiDashboard from "../controllers/ApiDashboard.js";
 const Route = express.Router();
 Route.post("/signup", SignupController);
 Route.post("/login", Login)
@@ -26,4 +27,5 @@ Route.get("/files", verifyJwt, Pagination)
 Route.get("/filestrashed", verifyJwt, Trashed)
 Route.patch("/restore/:id", verifyJwt, RestoreFile);
 Route.delete("/trash/:id", verifyJwt, PermanentDelete);
+Route.get("/apidashboard", verifyJwt, ApiDashboard);
 export default Route;
