@@ -4,8 +4,8 @@ info:
   seq: 12
 
 http:
-  method: DELETE
-  url: http://localhost:9090/auth/api/trash/6a539a9fb031ac4f6d5ee9f3
+  method: GET
+  url: http://localhost:9090/auth/api/apidashboard
   headers:
     - name: Authorization
       value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNGZkMWUyNjkwMWM1OTE1MjM3YzNjNSIsImVtYWlsIjoiYWRuYW5AZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3ODM2MTU5NzAsImV4cCI6MTc4NDIyMDc3MH0.4sX1gVlIuuNBrZwNgPkFzwPnBQfDk8w0oKvJZGSRbm0
