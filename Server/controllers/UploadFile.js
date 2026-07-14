@@ -10,7 +10,7 @@ const UploadFile = async (req, res) => {
             });
         }
 
-        // Check storage limit
+
         if (req.user.storageUsed + req.file.size > req.user.storageLimit) {
             return res.status(400).json({
                 success: false,
@@ -18,7 +18,7 @@ const UploadFile = async (req, res) => {
             });
         }
         const filePath = path.join("uploads", req.file.filename);
-        // Save file metadata
+
         const file = new UploadFileModel({
             owner: req.user._id,
             originalName: req.file.originalname,
@@ -32,12 +32,16 @@ const UploadFile = async (req, res) => {
 
         await file.save();
 
-        // Update user storage
+
+
         req.user.storageUsed += req.file.size;
 
         await req.user.save();
+        await Promise.all([
+            redisClient.del(`files:${req.user._id}`),
+            redisClient.del(`dashboard:${req.user._id}`)
+        ]);
 
-        // Calculate remaining storage
         const remainingStorage =
             req.user.storageLimit - req.user.storageUsed;
 

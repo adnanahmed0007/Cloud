@@ -1,6 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import "./config/redis.js";
+
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";

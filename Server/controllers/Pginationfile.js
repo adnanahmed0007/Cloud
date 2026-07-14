@@ -27,6 +27,18 @@ const Pagination = async (req, res) => {
                 message: "Page and limit must be greater than 0."
             });
         }
+        const cacheKey = `pagination:${req.user._id}:page:${page}:limit:${limit}:sort:${sort || "newest"}`;
+        const cachedFiles = await redisClient.get(cacheKey);
+        if (cachedFiles) {
+            const data = JSON.parse(cachedFiles);
+
+            return res.status(200).json({
+                success: true,
+                source: "redis",
+                message: "we got the files",
+                ...data
+            });
+        }
         const files = await UploadFileModel.find({
             owner: req.user._id
         })
@@ -37,6 +49,20 @@ const Pagination = async (req, res) => {
             owner: req.user._id
         });
         const totalPages = Math.ceil(totalFiles / limit);
+        const responseData = {
+            page,
+            limit,
+            totalFiles,
+            totalPages,
+            files
+        };
+
+        await redisClient.setEx(
+            cacheKey,
+            60,
+            JSON.stringify(responseData)
+        );
+
         return res
             .status(200)
             .json({

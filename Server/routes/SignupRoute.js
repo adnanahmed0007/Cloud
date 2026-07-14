@@ -14,10 +14,13 @@ import Trashed from "../controllers/GetTrashedfile.js";
 import RestoreFile from "../controllers/RestoreFile.js";
 import PermanentDelete from "../controllers/DeletePermanently.js";
 import ApiDashboard from "../controllers/ApiDashboard.js";
+import rateLimiter from "../middleware/Ratelimiter.js";
+import updatePassword from "../controllers/UpdatePassword.js";
 const Route = express.Router();
-Route.post("/signup", SignupController);
-Route.post("/login", Login)
-Route.post("/upload", verifyJwt, upload.single("file"), UploadFile);
+Route.post("/signup", rateLimiter, SignupController);
+Route.post("/login", rateLimiter, Login)
+Route.patch("/updatepassword", rateLimiter, updatePassword);
+Route.post("/upload", verifyJwt, rateLimiter, upload.single("file"), UploadFile);
 Route.get("/getall", verifyJwt, GetAllfile);
 Route.get("/delete/:id", verifyJwt, DeleteFile);
 Route.get("/download/:id", verifyJwt, Downloadfile)
