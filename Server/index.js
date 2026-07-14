@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import "./config/redis.js";
-
+import redisClient from "./config/redis.js";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -23,6 +23,8 @@ async function connection() {
         await mongoose.connect(DB_URL);
 
         console.log("✅ MongoDB Connected");
+        await redisClient.connect();
+        console.log("✅ Redis Connected");
 
         app.listen(PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);

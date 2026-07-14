@@ -1,6 +1,8 @@
 import UploadFileModel from "../models/UploadModel.js";
-import path from "path";
+import redisClient from "../config/redis.js";
+
 const UploadFile = async (req, res) => {
+
     try {
 
         if (!req.file) {
@@ -17,7 +19,7 @@ const UploadFile = async (req, res) => {
                 message: "Storage limit exceeded."
             });
         }
-        const filePath = path.join("uploads", req.file.filename);
+
 
         const file = new UploadFileModel({
             owner: req.user._id,
