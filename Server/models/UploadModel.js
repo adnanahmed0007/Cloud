@@ -43,6 +43,15 @@ const uploadFileSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         }
+        , shareToken: {
+            type: String,
+            default: null
+        },
+
+        isPublic: {
+            type: Boolean,
+            default: false
+        },
     },
     {
         timestamps: true,

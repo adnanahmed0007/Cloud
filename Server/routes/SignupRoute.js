@@ -16,6 +16,8 @@ import PermanentDelete from "../controllers/DeletePermanently.js";
 import ApiDashboard from "../controllers/ApiDashboard.js";
 import rateLimiter from "../middleware/Ratelimiter.js";
 import updatePassword from "../controllers/UpdatePassword.js";
+import Sharefile from "../controllers/ShareFile.js";
+import dowloandlink from "../controllers/DownloadLink.js";
 const Route = express.Router();
 Route.post("/signup", rateLimiter, SignupController);
 Route.post("/login", rateLimiter, Login)
@@ -31,4 +33,6 @@ Route.get("/filestrashed", verifyJwt, Trashed)
 Route.patch("/restore/:id", verifyJwt, RestoreFile);
 Route.delete("/trash/:id", verifyJwt, PermanentDelete);
 Route.get("/apidashboard", verifyJwt, ApiDashboard);
+Route.post("/share/:id", verifyJwt, Sharefile);
+Route.get("/sharedonwload/:token", dowloandlink);
 export default Route;
