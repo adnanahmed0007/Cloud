@@ -1,5 +1,5 @@
-import UserDetaildatabse from "../models/Usermodel.js";
-import generateToken from "../util/Generatetoken.js";
+import UserDetaildatabse from "../../models/Usermodel.js";
+import generateToken from "../../util/Generatetoken.js";
 import bcrypt from "bcrypt"
 const SignupController = async (req, res) => {
     try {

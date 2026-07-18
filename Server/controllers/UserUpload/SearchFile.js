@@ -1,5 +1,5 @@
-import UploadFileModel from "../models/UploadModel.js";
-import redisClient from "../config/redis.js";
+import UploadFileModel from "../../models/UploadModel.js";
+import redisClient from "../../config/redis.js";
 const SearchFile = async (req, res) => {
     try {
         const { fileName } = req.query;
@@ -12,13 +12,13 @@ const SearchFile = async (req, res) => {
         const cacheKey = `search:${req.user._id}:${fileName.toLowerCase()}`;
         const cachedFiles = await redisClient.get(cacheKey);
         if (cachedFiles) {
+            const data = JSON.parse(cachedFiles);
+
             return res.status(200).json({
                 success: true,
                 source: "redis",
-
-
-                files: JSON.parse(cachedFiles),
-                totalFiles: files.length
+                message: "we got the files",
+                ...data
             });
         }
 

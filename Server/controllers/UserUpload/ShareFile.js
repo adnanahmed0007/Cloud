@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import UploadFileModel from "../models/UploadModel.js";
+import UploadFileModel from "../../models/UploadModel.js";
 const Sharefile = async (req, res) => {
     try {
         const { id } = req.params;

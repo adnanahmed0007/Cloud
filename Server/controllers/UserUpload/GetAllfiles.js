@@ -1,5 +1,5 @@
-import redisClient from "../config/redis.js";
-import UploadFileModel from "../models/UploadModel.js";
+import redisClient from "../../config/redis.js";
+import UploadFileModel from "../../models/UploadModel.js";
 const GetAllfile = async (req, res) => {
     try {
         const cacheKey = `files:${req.user._id}`;

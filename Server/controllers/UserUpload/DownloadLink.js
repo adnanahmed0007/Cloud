@@ -1,5 +1,5 @@
 
-import UploadFileModel from "../models/UploadModel.js";
+import UploadFileModel from "../../models/UploadModel.js";
 const dowloandlink = async (req, res) => {
     try {
         const { token } = req.params;

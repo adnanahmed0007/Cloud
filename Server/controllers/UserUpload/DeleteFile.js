@@ -1,4 +1,5 @@
-import UploadFileModel from "../models/UploadModel.js";
+
+import UploadFileModel from "../../models/UploadModel.js";
 
 const DeleteFile = async (req, res) => {
     try {

@@ -1,6 +1,5 @@
 
-import UploadFileModel from "../models/UploadModel.js";
-
+import UploadFileModel from "../../models/UploadModel.js";
 const RenameFile = async (req, res) => {
     try {
 

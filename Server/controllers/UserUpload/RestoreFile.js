@@ -1,4 +1,4 @@
-import UploadFileModel from "../models/UploadModel.js";
+import UploadFileModel from "../../models/UploadModel.js";
 
 const RestoreFile = async (req, res) => {
     try {

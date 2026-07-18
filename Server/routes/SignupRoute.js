@@ -1,23 +1,25 @@
 import express from "express";
-import SignupController from "../controllers/SignupController.js";
-import Login from "../controllers/LoginController.js";
+import SignupController from "../controllers/Authentication/SignupController.js";
+import Login from "../controllers/Authentication/LoginController.js";
+import updatePassword from "../controllers/Authentication/UpdatePassword.js";
 import verifyJwt from "../middleware/Verifyjwt.js";
 import upload from "../middleware/UploadFileMiddelware.js";
-import UploadFile from "../controllers/UploadFile.js";
-import GetAllfile from "../controllers/GetAllfiles.js";
-import DeleteFile from "../controllers/DeleteFile.js";
-import Downloadfile from "../controllers/Downloadfile.js";
-import RenameFile from "../controllers/RenamFile.js";
-import SearchFile from "../controllers/SearchFile.js";
-import Pagination from "../controllers/Pginationfile.js";
-import Trashed from "../controllers/GetTrashedfile.js";
-import RestoreFile from "../controllers/RestoreFile.js";
-import PermanentDelete from "../controllers/DeletePermanently.js";
-import ApiDashboard from "../controllers/ApiDashboard.js";
+import UploadFile from "../controllers/UserUpload/UploadFile.js";
+import GetAllfile from "../controllers/UserUpload/GetAllfiles.js";
+import DeleteFile from "../controllers/UserUpload/DeleteFile.js";
+import Downloadfile from "../controllers/UserUpload/Downloadfile.js";
+import RenameFile from "../controllers/UserUpload/RenamFile.js";
+import SearchFile from "../controllers/UserUpload/SearchFile.js";
+import Pagination from "../controllers/UserUpload/Pginationfile.js";
+import Trashed from "../controllers/UserUpload/GetTrashedfile.js";
+import RestoreFile from "../controllers/UserUpload/RestoreFile.js";
+import PermanentDelete from "../controllers/UserUpload/DeletePermanently.js";
+import ApiDashboard from "../controllers/UserUpload/ApiDashboard.js";
 import rateLimiter from "../middleware/Ratelimiter.js";
-import updatePassword from "../controllers/UpdatePassword.js";
-import Sharefile from "../controllers/ShareFile.js";
-import dowloandlink from "../controllers/DownloadLink.js";
+
+import Sharefile from "../controllers/UserUpload/ShareFile.js";
+import dowloandlink from "../controllers/UserUpload/DownloadLink.js";
+
 const Route = express.Router();
 Route.post("/signup", rateLimiter, SignupController);
 Route.post("/login", rateLimiter, Login)

@@ -1,4 +1,7 @@
-import UserDetaildatabse from "../models/Usermodel.js";
+
+
+import UserDetaildatabse from "../../models/Usermodel.js";
+import generateToken from "../../util/Generatetoken.js";
 
 import bcrypt from "bcrypt"
 const updatePassword = async (req, res) => {

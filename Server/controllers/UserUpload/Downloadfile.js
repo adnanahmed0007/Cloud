@@ -1,4 +1,4 @@
-import UploadFileModel from "../models/UploadModel.js";
+import UploadFileModel from "../../models/UploadModel.js";
 import fs from "fs";
 const Downloadfile = async (req, res) => {
     try {
