@@ -1,4 +1,5 @@
 import UploadFileModel from "../../models/UploadModel.js";
+import redisClient from "../../config/redis.js";
 const Pagination = async (req, res) => {
     try {
 

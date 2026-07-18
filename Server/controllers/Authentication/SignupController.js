@@ -13,7 +13,7 @@ const SignupController = async (req, res) => {
                         message: "user already regsiter"
                     })
             }
-            const hashedPassword = await bcrypt.hash(password, 5);
+            const hashedPassword = await bcrypt.hash(password, 10);
             const user = new UserDetaildatabse({
                 name: name,
                 email: email,
@@ -45,6 +45,10 @@ const SignupController = async (req, res) => {
     }
     catch (e) {
         console.log(e);
+        return res
+            .status(500)
+            .json({ message: "internal server error" })
+
     }
 }
 export default SignupController;

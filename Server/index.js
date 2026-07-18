@@ -20,11 +20,15 @@ app.use("/auth/api", Route);
 async function connection() {
     try {
         await mongoose.connect(DB_URL);
-
         console.log("✅ MongoDB Connected");
-        await redisClient.connect();
-        console.log("✅ Redis Connected");
-        console.log(process.env.REDIS_URL)
+
+        try {
+            await redisClient.connect();
+            console.log("✅ Redis Connected");
+        } catch (err) {
+            console.log("❌ Redis Connection Failed:", err.message);
+        }
+
 
         app.listen(PORT, () => {
             console.log(`🚀 Server running on port ${PORT}`);

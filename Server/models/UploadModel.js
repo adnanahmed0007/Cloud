@@ -35,10 +35,7 @@ const uploadFileSchema = new mongoose.Schema(
             required: true,
         },
 
-        isPublic: {
-            type: Boolean,
-            default: false,
-        },
+
         isTrashed: {
             type: Boolean,
             default: false,
