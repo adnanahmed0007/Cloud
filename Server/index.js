@@ -11,7 +11,15 @@ const app = express();
 
 const PORT = process.env.PORT || 9090;
 const DB_URL = process.env.DB_URL;
-
+app.use(
+    cors({
+        origin: [
+            "http://localhost:5173",
+            "https://your-frontend.vercel.app",
+        ],
+        credentials: true,
+    })
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use("/auth/api", Route);

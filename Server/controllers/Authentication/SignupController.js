@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 const SignupController = async (req, res) => {
     try {
         const { name, email, password } = req.body;
+
         if (name && email && password) {
             const find = await UserDetaildatabse.findOne({ email });
             if (find) {
@@ -44,10 +45,10 @@ const SignupController = async (req, res) => {
 
     }
     catch (e) {
-        console.log(e);
+
         return res
             .status(500)
-            .json({ message: "internal server error" })
+            .json({ message: "internal server error" + " " + e })
 
     }
 }

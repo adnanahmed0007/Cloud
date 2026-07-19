@@ -26,7 +26,7 @@ Route.post("/login", rateLimiter, Login)
 Route.patch("/updatepassword", rateLimiter, updatePassword);
 Route.post("/upload", verifyJwt, rateLimiter, upload.single("file"), UploadFile);
 Route.get("/getall", verifyJwt, GetAllfile);
-Route.get("/delete/:id", verifyJwt, DeleteFile);
+Route.delete("/delete/:id", verifyJwt, DeleteFile);
 Route.get("/download/:id", verifyJwt, Downloadfile)
 Route.post("/rename/:id", verifyJwt, RenameFile)
 Route.get("/search", verifyJwt, SearchFile)
