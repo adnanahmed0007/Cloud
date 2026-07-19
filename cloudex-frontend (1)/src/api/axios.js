@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const SERVER_URL = import.meta.env.VITE_API_URL || "http://localhost:9090";
+export const SERVER_URL = "https://cloud-yby3.onrender.com"|| "http://localhost:9090";
 export const API_BASE_URL = `${SERVER_URL}/auth/api`;
 
 const api = axios.create({
