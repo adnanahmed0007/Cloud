@@ -1,12 +1,6 @@
 import api, { SERVER_URL } from "./axios";
 
-/* ---------------------------------------------------------------------- *
- * Every function here maps 1:1 to a route in routes/SignupRoute.js.
- * Nothing on the backend was changed — this file is purely a typed,
- * friendly wrapper around the existing Express endpoints.
- * ---------------------------------------------------------------------- */
-
-// --- Auth ---------------------------------------------------------------
+ 
 export const signup = (name, email, password) =>
   api.post("/signup", { name, email, password });
 
@@ -49,14 +43,11 @@ export const shareFile = (id) => api.post(`/share/${id}`);
 
 export const getDashboard = () => api.get("/apidashboard");
 
-// Downloads return a raw file stream, so we ask axios for a blob and let
-// the browser save it, instead of trying to parse it as JSON.
+ 
 export const downloadFile = (id) =>
   api.get(`/download/${id}`, { responseType: "blob" });
 
-// Public share links point at GET /auth/api/sharedonwload/:token and need
-// no auth token, so this hits the server directly rather than going
-// through the axios instance's Authorization header.
+ 
 export const publicDownloadUrl = (token) =>
   `${SERVER_URL}/auth/api/sharedonwload/${token}`;
 
