@@ -8,33 +8,20 @@ export function AuthProvider({ children }) {
     const raw = localStorage.getItem("cloudex_user");
     return raw ? JSON.parse(raw) : null;
   });
-  const [token, setToken] = useState(() =>
-    localStorage.getItem("cloudex_token")
-  );
   const [loading, setLoading] = useState(false);
   const [authError, setAuthError] = useState("");
-
-  useEffect(() => {
-    if (token) localStorage.setItem("cloudex_token", token);
-    else localStorage.removeItem("cloudex_token");
-  }, [token]);
 
   useEffect(() => {
     if (user) localStorage.setItem("cloudex_user", JSON.stringify(user));
     else localStorage.removeItem("cloudex_user");
   }, [user]);
 
-  const persistSession = (data) => {
-    setToken(data.token);
-    setUser(data.user);
-  };
-
   const doLogin = async (email, password) => {
     setLoading(true);
     setAuthError("");
     try {
       const { data } = await api.login(email, password);
-      persistSession(data);
+      setUser(data.user);
       return { ok: true };
     } catch (err) {
       const message =
@@ -51,7 +38,7 @@ export function AuthProvider({ children }) {
     setAuthError("");
     try {
       const { data } = await api.signup(name, email, password);
-      persistSession(data);
+      setUser(data.user);
       return { ok: true };
     } catch (err) {
       const message =
@@ -64,8 +51,9 @@ export function AuthProvider({ children }) {
   };
 
   const logout = () => {
-    setToken(null);
     setUser(null);
+    // The httpOnly cookie itself can only be cleared by the server (JS can't
+    // touch it). Backend note below covers adding a /logout route for this.
   };
 
   return (
@@ -73,8 +61,7 @@ export function AuthProvider({ children }) {
       value={{
         user,
         setUser,
-        token,
-        isAuthenticated: !!token,
+        isAuthenticated: !!user,
         loading,
         authError,
         setAuthError,
