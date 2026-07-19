@@ -25,7 +25,7 @@ const Sharefile = async (req, res) => {
         return res.status(200).json({
             success: true,
             message: "File shared successfully.",
-            shareLink: `http://localhost:9090/auth/api/share/${token}`
+            shareLink: `http://localhost:9090/auth/api/sharedonwload/${token}`
         });
 
     }

@@ -23,7 +23,7 @@ import dowloandlink from "../controllers/UserUpload/DownloadLink.js";
 const Route = express.Router();
 Route.post("/signup", rateLimiter, SignupController);
 Route.post("/login", rateLimiter, Login)
-Route.patch("/updatepassword", rateLimiter, updatePassword);
+Route.patch("/updatepassword", verifyJwt, rateLimiter, updatePassword);
 Route.post("/upload", verifyJwt, rateLimiter, upload.single("file"), UploadFile);
 Route.get("/getall", verifyJwt, GetAllfile);
 Route.delete("/delete/:id", verifyJwt, DeleteFile);

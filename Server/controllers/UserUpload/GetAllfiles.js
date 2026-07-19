@@ -21,7 +21,7 @@ const GetAllfile = async (req, res) => {
         await redisClient.setEx(
             cacheKey,
             60,
-            JSON.stringify(files)
+            JSON.stringify({ totalFiles: files.length, files })
         );
 
         return res.status(200).json({
